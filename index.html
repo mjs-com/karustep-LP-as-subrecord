@@ -1,33 +1,248 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>カルステップ｜踏むだけだから、向き合える。医療支援AIシュライバー</title>
-        <meta name="description" content="フットスイッチ操作による医療支援AIシュライバー「カルステップ（karustep）」。足で踏むだけでハンズフリー録音・AI要約・自動転記。医師の理想の診察を実現します。">
-        <meta name="keywords" content="カルステップ,karustep,医療,AIシュライバー,カルテ,電子カルテ,医師,診察,フットスイッチ,音声認識,自動要約,医療DX">
-        <meta name="author" content="カルステップ">
-        <meta name="robots" content="index, follow">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子カルテが止まっても、診療は止めない｜サブカルテとしてのカルステップ</title>
+    <meta name="description" content="電子カルテ障害時でも診療を継続。カルステップがあれば、日頃の記録がそのままサブカルテに。障害時も特別な切替作業は不要です。">
+    <meta name="keywords" content="カルステップ,karustep,サブカルテ,電子カルテ障害,ダウンタイム対策,診療継続,医療DX,バックアップ">
+    <meta name="author" content="カルステップ">
+    <meta name="robots" content="index, follow">
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="img/karustep-logo.png">
+    <!-- OGP Tags -->
+    <meta property="og:title" content="電子カルテが止まっても、診療は止めない｜サブカルテとしてのカルステップ">
+    <meta property="og:description" content="電子カルテ障害時でも診療を継続。カルステップがあれば、日頃の記録がそのままサブカルテに。">
+    <meta property="og:image" content="img/ogp-img.png">
+    <meta property="og:type" content="website">
     
-        <!-- Reset CSS CDN -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.1/destyle.min.css">
-        
-        <!-- Google Fonts CDN-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
-        
-        <!-- Font Awesome CDN-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="電子カルテが止まっても、診療は止めない｜サブカルテとしてのカルステップ">
+    <meta name="twitter:description" content="電子カルテ障害時でも診療を継続。カルステップがあれば、日頃の記録がそのままサブカルテに。">
+    <meta name="twitter:image" content="img/ogp-img.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/karustep-logo.png">
+
+    <!-- Reset CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.1/destyle.min.css">
     
-        <!-- style.css -->
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- style.css -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* サブカルテLP専用のスタイル */
+        
+        /* ユーザーの声(ライト版)セクション */
+        .voice-light {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+        
+        .voice-light-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .voice-light-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .voice-light-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        
+        .voice-light-content {
+            flex: 1;
+        }
+        
+        .voice-light-text {
+            font-size: 1.6rem;
+            color: #666;
+            line-height: 1.5;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .voice-light-author {
+            font-size: 1.4rem;
+            color: #4a90e2;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* なぜ今セクション */
+        .why-now {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .why-now-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        
+        .why-now-item {
+            display: flex;
+            align-items: flex-start;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .why-now-item i {
+            color: #4a90e2;
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+        }
+        
+        .why-now-item p {
+            margin: 0;
+            color: #666;
+            font-size: 1.8rem;
+            line-height: 1.6;
+        }
+        
+        /* どう動くか(3ステップ)セクション */
+        .three-steps {
+            padding: 5rem 0;
+            background: #f4f8ff;
+        }
+        
+        .step-premise {
+            background: #e8f5e8;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #51cf66;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .step-premise h3 {
+            color: #2c5f7a;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-premise p {
+            color: #666;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* X投稿セクション */
+        .x-posts-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .x-posts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .x-post-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        .x-post-embed {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .load-more-btn {
+            text-align: center;
+        }
+        
+        .load-more-btn button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: white;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .load-more-btn button:hover {
+            background: #4a90e2;
+            color: white;
+        }
+        
+        .load-more-btn button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* モバイル対応 */
+        @media (max-width: 480px) {
+            .voice-light-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .voice-light-text {
+                font-size: 1.5rem;
+            }
+            
+            .why-now-item {
+                padding: 1.5rem;
+            }
+            
+            .why-now-item p {
+                font-size: 1.6rem;
+            }
+            
+            .step-premise h3 {
+                font-size: 2rem;
+            }
+            
+            .step-premise p {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
 <body>
-    <!-- 1. ファーストビュー -->
+    <!-- 1. ヒーロー -->
     <section id="hero" class="hero">
         <div class="hero-container">
             <div class="hero-image">
@@ -38,17 +253,18 @@
             </div>
             <div class="hero-content">
                 <div class="hero-text-overlay">
-                    <h1 class="hero-title"><span class="highlight-text">踏むだけ</span>だから、<span class="highlight-text">向き合える</span></h1>
-                    <p class="hero-subtitle"><span class="highlight-text">足元のAIシュライバー</span>で、<span class="highlight-text">理想の診察</span>を現実に</p>
+                    <h1 class="hero-title">電子カルテが止まっても、<br>診療は止めない。</h1>
+                    <p class="hero-subtitle">踏むだけの記録が、今日も、いざという時も支える。</p>
                 </div>
                 <div class="hero-cta">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfA8Vr7X6dY7JiOIg42yjbFMJfaAB3nW_YEZV6onkJA-U0FJw/viewform?usp=dialog" class="cta-button primary large with-subtext" target="_blank" rel="noopener noreferrer">今すぐ、理想の診察をはじめる<br><span class="sub-text">（無料トライアルへ）</span></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfA8Vr7X6dY7JiOIg42yjbFMJfaAB3nW_YEZV6onkJA-U0FJw/viewform?usp=dialog" class="cta-button primary large" target="_blank" rel="noopener noreferrer" data-gtm="click_cta_trial" data-position="hero">無料トライアルを始める</a>
+                    <a href="https://mjs.main.jp/karustep-LP/contact.html" class="cta-button secondary large" target="_blank" rel="noopener noreferrer" data-gtm="click_cta_contact" data-position="hero">お問い合わせ</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 導入実績セクション -->
+    <!-- 2. 導入実績セクション -->
     <section id="social-proof" class="social-proof-section">
         <div class="container">
             <img src="img/donyu-jisseki.png" alt="導入実績" class="social-proof-text" loading="lazy">
@@ -74,90 +290,87 @@
         </div>
     </section>
 
-    <!-- 2. 問題提起（共感） -->
-    <section id="problems" class="problems">
+    <!-- 3. ユーザーの声(ライト版) -->
+    <section id="voice-light" class="voice-light">
         <div class="container">
-            <h2 class="section-title">先生、こんな毎日を送っていませんか？</h2>
-            <div class="problems-list">
-                <div class="problem-item">
-                    <i class="fas fa-check-circle"></i>
-                    <p>カルテ入力に気を取られ、患者さんの顔を見る時間が減っている</p>
+            <div class="voice-light-cards">
+                <div class="voice-light-card">
+                    <img src="img/dr-kusabiraki.jpg" alt="けい先生" loading="lazy">
+                    <div class="voice-light-content">
+                        <p class="voice-light-text">記録自体はエクセルシートに残っていたので全く普段の診察と変わりなくできていました。意図していませんでしたが、記録媒体としても優秀でしたね。</p>
+                        <p class="voice-light-author">けい先生</p>
+                    </div>
                 </div>
-                <div class="problem-item">
-                    <i class="fas fa-check-circle"></i>
-                    <p>診察後の記録作業で、帰宅が遅くなってしまう</p>
-                </div>
-                <div class="problem-item">
-                    <i class="fas fa-check-circle"></i>
-                    <p>パソコンが苦手で、文字入力がストレスになっている</p>
-                </div>
-                <div class="problem-item">
-                    <i class="fas fa-check-circle"></i>
-                    <p>診察の合間にカルテ記録が追いつかず、いつも焦っている</p>
+                <div class="voice-light-card">
+                    <img src="img/dr-nakagawa.jpeg" alt="なかがわ先生" loading="lazy">
+                    <div class="voice-light-content">
+                        <p class="voice-light-text">電カルシステムが止まった時もカルステップがあれば診療を継続できます。スプレッドシートの記録がそのまま使えるので安心です。</p>
+                        <p class="voice-light-author">なかがわ先生</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. 解決策の提示 -->
-    <section id="solution" class="solution">
+    <!-- 4. なぜ今(市場背景) -->
+    <section id="why-now" class="why-now">
         <div class="container">
-            <h2 class="section-title">その悩み、<br class="mobile-only">原因は"手"にありました。</h2>
-            <div class="solution-content">
-                <div class="before-after">
-                    <div class="before">
-                        <h3>これまで</h3>
-                        <img src="img/before-using-karustep.png" alt="キーボードに縛られた診察" loading="lazy">
-                        <p>手がキーボードに縛られて、<br class="mobile-only">患者さんと向き合えない</p>
-                    </div>
-                    <div class="arrow">
-                        <img src="img/right-arrow.png" alt="矢印" loading="lazy">
-                    </div>
-                    <div class="after">
-                        <h3>カルステップなら</h3>
-                        <img src="img/after-using-karustep.jpg" alt="患者と向き合う理想の診察" loading="lazy">
-                        <p>足元のフットスイッチで、<br>患者さんとしっかり向き合える</p>
-                    </div>
+            <h2 class="section-title">いざという時、<br class="mobile-only">診療を守れますか？</h2>
+            <div class="why-now-list">
+                <div class="why-now-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>近時、クラウド型電子カルテの障害により、半日規模で利用不能となる事例が散見されています。</p>
                 </div>
-                <div class="solution-intro">
-                    <img src="img/karustep-logo-with-title.png" alt="カルステップロゴ" class="logo" loading="lazy">
-                    <p class="solution-description">フットスイッチ操作による診察音声要約AIが、<br>あなたの診察を変える。</p>
+                <div class="why-now-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>診療・会計・記録の一連の業務が滞留し、売上損失・患者体験の悪化・スタッフ負担増につながります。</p>
+                </div>
+                <div class="why-now-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>「ダウンタイム時でも診療を止めない」ための備えが、今こそ必要です。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. カルステップとは？（How it Works） -->
-    <section id="how-it-works" class="how-it-works">
+    <!-- 5. どう動くか(3ステップ) -->
+    <section id="three-steps" class="three-steps">
         <div class="container">
-            <h2 class="section-title">たったこれだけ、<br class="mobile-only">カルステップの使い方 3step</h2>
+            <h2 class="section-title">カルステップがあれば、<br class="mobile-only">特別な操作は不要</h2>
+            
+            <div class="step-premise">
+                <h3>日頃のカルステップ運用が"そのまま"サブカルテになります</h3>
+                <p>障害発生時に特別な切替作業や追加オペレーションは不要です。<br>「踏むだけ」の記録が、今日も、いざという時も支える。</p>
+            </div>
+            
             <div class="demo-video">
-                <video autoplay muted loop>
+                <video autoplay muted loop playsinline>
                     <source src="img/short-demo.mp4" type="video/mp4">
                     カルステップの使い方デモ動画
                 </video>
             </div>
+            
             <div class="steps">
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <h3>踏んで、<span class="text-green">録音開始！</span></h3>
+                        <h3><span class="text-green">平時</span>の運用</h3>
                     </div>
-                    <p>診察開始時に<span class="desktop-only">フット</span>スイッチを1回踏むだけ</p>
+                    <p>診療中にいつも通りフットスイッチを踏んでカルステップへ記録（スプレッドシート＋テキスト）</p>
                 </div>
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">2</div>
-                        <h3>踏んで、<span class="text-red">録音停止！</span></h3>
+                        <h3><span class="text-green">平時</span>の管理</h3>
                     </div>
-                    <p>診察終了時にもう1回踏んで自動でAI要約</p>
+                    <p>患者識別/時系列で自然に整理・蓄積（滞留の可視化も日常運用の延長）</p>
                 </div>
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">3</div>
-                        <h3>踏んで、<span class="text-blue">転記！</span></h3>
+                        <h3><span class="text-red">障害発生</span>〜復旧後</h3>
                     </div>
-                    <p>Alt+フットスイッチでカルテに簡単転記</p>
+                    <p>電子カルテが復旧したら、スプレッドシートから必要箇所をコピペで転記して締める</p>
                 </div>
             </div>
             
@@ -174,6 +387,96 @@
                         loading="lazy">
                     </iframe>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ユーザー事例(SNS: X投稿) -->
+    <section id="x-posts" class="x-posts-section">
+        <div class="container">
+            <h2 class="section-title">実際の現場の声</h2>
+            <div class="x-posts-grid" id="x-posts-container">
+                <!-- 初期表示: 3件 -->
+                <div class="x-post-card" data-batch="1">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">カルステップ併用で、ワードとローカルカルテぶん回して締めました！！電子カルテが止まった時もカルステップなら😇</p>
+                            &mdash; けい (@keicli_yama) <a href="https://twitter.com/keicli_yama/status/1989571676108181635?ref_src=twsrc%5Etfw">May 12, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card" data-batch="1">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">某クソ電カルがピんでしまったのでカルステップをサブカルテに！！</p>
+                            &mdash; 池原悠（Pon） (@1042limit) <a href="https://twitter.com/1042limit/status/1989603505473196118?ref_src=twsrc%5Etfw">May 12, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card" data-batch="1">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">カルステップでバックアップ取るっててもありますよ！！</p>
+                            &mdash; なかまこ🤱 (@nakamakoko) <a href="https://twitter.com/nakamakoko/status/1989638541601882585?ref_src=twsrc%5Etfw">May 12, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <!-- 2回目表示: 次の3件 -->
+                <div class="x-post-card hidden" data-batch="2">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">カルステップ×医療クラーク最強です！</p>
+                            &mdash; ミライ(MIRAI)e-medical (@MIRAIEMEDICAL) <a href="https://twitter.com/MIRAIEMEDICAL/status/1989619004097634604?ref_src=twsrc%5Etfw">May 12, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card hidden" data-batch="2">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">&gt;どう代替ルートを確保するか ここでカルステップですね！</p>
+                            &mdash; りうせつ 劉節 RyuSetsu (@riusetsu) <a href="https://twitter.com/riusetsu/status/1989868305587576976?ref_src=twsrc%5Etfw">May 13, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card hidden" data-batch="2">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">ご紹介ありがとうございます♪カルステップは患者記録を表にまとめておけるので...</p>
+                            &mdash; くるくる🩺👨‍⚕️診療所院長/カルステップ (@Dr_kurukuru) <a href="https://twitter.com/Dr_kurukuru/status/1989869522741072349?ref_src=twsrc%5Etfw">May 13, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <!-- 3回目表示: 最後の3件 -->
+                <div class="x-post-card hidden" data-batch="3">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">カルステップを踏むことで、患者さんからの評価が上がり、選ばれる病院になる</p>
+                            &mdash; 小野ちゃん@社長ナース❤️‍🩹⚡️ (@onochang_snbc) <a href="https://twitter.com/onochang_snbc/status/1966735419766460692?ref_src=twsrc%5Etfw">March 11, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card hidden" data-batch="3">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">このようなサービスをずっと待ってました！カルテ入力の時間を10分の1に減らし、記載漏れも防げます。</p>
+                            &mdash; けいぼ@👨‍⚕️ (@keibo_keibo) <a href="https://twitter.com/keibo_keibo/status/1955257018937196560?ref_src=twsrc%5Etfw">February 8, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="x-post-card hidden" data-batch="3">
+                    <div class="x-post-embed">
+                        <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+                            <p lang="ja" dir="ltr">診察丁寧、カルテしっかり書く出張医の先生 今まで診察が遅くて、どうしようかと思っていたが、#カルステップ　で無双化❗</p>
+                            &mdash; 黒﨑 孝太 / 📝医療文書業務サポート／AIderm大好き🤖 (@broadmann) <a href="https://twitter.com/broadmann/status/1964189185453281679?ref_src=twsrc%5Etfw">March 4, 2025</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-btn">
+                <button id="load-more-btn" onclick="loadMorePosts()">さらに見る</button>
             </div>
         </div>
     </section>
@@ -250,37 +553,7 @@
         </div>
     </section>
 
-    <!-- 5. 導入後の未来（ベネフィット） -->
-    <section id="benefits" class="benefits">
-        <div class="container">
-            <h2 class="section-title">カルステップがもたらす、<br class="mobile-only">3つの時間革命</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>患者との時間</h3>
-                    <p>キーボードから解放され、<br class="mobile-only">患者さんとの対話に100%集中。<br>信頼関係が深まり<span class="desktop-only">、</span>診察の質が向上します。</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>自分の時間</h3>
-                    <p>カルテ入力時間を50%以上削減。<br>診療後の残業がなくなり、<br class="mobile-only">プライベートな時間を取り戻せます。</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>院内の時間</h3>
-                    <p>スプレッドシートでの<br class="mobile-only">リアルタイム共有により、<br>コミュニケーションエラーが減ります。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. 信頼と安心（社会的証明） -->
+    <!-- 7. 社会的証明（医師の声・ロゴ・動画） -->
     <section id="testimonials" class="testimonials">
         <div class="container">
             <h2 class="section-title">導入された先生方の声</h2>
@@ -337,71 +610,18 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-cta">
-                <a href="https://mjs.main.jp/karustep-LP/reviews.html" class="cta-button secondary">さらに詳しい導入医師の声を見る<br>（インタビュー動画あり）</a>
-            </div>
         </div>
     </section>
 
-    <!-- 7. 選ばれる理由（USP） -->
-    <section id="usp" class="usp">
-        <div class="container">
-            <h2 class="section-title">カルステップが、<br class="mobile-only">賢い先生に選ばれる3つの理由</h2>
-            <div class="usp-grid">
-                <div class="usp-card">
-                    <h3><i class="fas fa-yen-sign"></i> 圧倒的なコストパフォーマンス</h3>
-                    <p>業界最安値のランニングコスト1分約1円。<br>中間マージンなしの直接契約モデルで実現。</p>
-                    <div class="comparison-table">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th class="highlight">カルステップ</th>
-                                <th>他社A</th>
-                                <th>他社B</th>
-                            </tr>
-                            <tr>
-                                <td>初期費用</td>
-                                <td class="highlight">55,000円</td>
-                                <td>50,000円</td>
-                                <td>150,000円</td>
-                            </tr>
-                            <tr>
-                                <td>月額費用</td>
-                                <td class="highlight"><span class="text-red">0～2,000円</span><br>(使用分のみ)</td>
-                                <td>10,000円<br>(3000分/月)</td>
-                                <td>19,800円～</td>
-                            </tr>
-                            <tr>
-                                <td>超過料金</td>
-                                <td class="highlight"><span class="text-red">1分約1円</span></td>
-                                <td>1分17円</td>
-                                <td>要問い合わせ</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="usp-card">
-                    <h3><i class="fas fa-hand-point-up"></i> 理想の診察を実現する直感操作</h3>
-                    <p>フットスイッチによるハンズフリー操作で、患者さんと目を合わせ、声に耳を傾ける理想的な診察が可能。</p>
-                    <img src="img/stepping_on_the_foot_switch.png" alt="フットスイッチ操作の様子" loading="lazy">
-                </div>
-                <div class="usp-card">
-                    <h3><i class="fas fa-hospital"></i> 高い汎用性</h3>
-                    <p>クラウド型・オンプレミス型電子カルテ、さらには紙カルテ運用のクリニックでも業務効率化を実現。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. 料金プラン -->
+    <!-- 8. 導入・価格 -->
     <section id="pricing" class="pricing">
         <div class="container">
             <h2 class="section-title">シンプルな料金体系</h2>
             <div class="pricing-card">
                 <div class="price-main">
-                    <span class="price-label">特別価格</span>
+                    <span class="price-label">買い切り価格</span>
                     <span class="price-amount">55,000円</span>
-                    <span class="price-note">買い切り・税込み</span>
+                    <span class="price-note">税込み</span>
                 </div>
                 <div class="included-items">
                     <h3>同梱物</h3>
@@ -431,32 +651,29 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-question">
+                        <span>電子カルテ障害時のみの利用も可能ですか？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>もちろん可能ですが、<span class="text-red-bold">日頃からカルステップをご利用いただくことを強くお勧めします</span>。日常的に使用することで、いざという時にスムーズに診療を継続でき、患者さんの待ち時間やスタッフの負担を最小限に抑えられます。また、日頃の診療効率化にもつながります。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>復旧後の転記作業は大変ではありませんか？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>スプレッドシートに整理された記録を<span class="text-navy-bold">コピー＆ペースト</span>するだけなので、手書きメモからの転記と比べて大幅に効率的です。Chrome拡張機能「コピペ for カルステップ」を使えば、さらに転記時間を短縮できます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
                         <span>どのパソコンでも使えますか？</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
                         <p>現在は<span class="text-red-bold">インターネット接続可能なWindows</span>のみ対応しています。<span class="text-red-bold">クラウド型電子カルテ</span>をご利用の場合、特に相性が良いです。インターネット接続可能な<span class="text-red-bold">一部のオンプレミスパソコン</span>では使用できることが確認できています。</p>
-                        <div class="faq-link-button">
-                            <a href="https://mjs.main.jp/karustep-LP/recomended-machine.html" class="cta-button secondary small">詳しい推奨環境を確認する</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>フットスイッチはどのように接続しますか？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>初期設定済のため、<span class="text-red-bold">USBで接続するだけ</span>ですぐにご使用いただけます。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>要約の精度はどれくらいですか？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>医療用語に最適化されたAIを使用しており、高い精度で要約できます。また、診療科や地域特有の表現は<span class="text-navy-bold">補正辞書</span>や<span class="text-navy-bold">プロンプトのカスタマイズ</span>で対応可能です。</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -474,19 +691,19 @@
                             </ul>
                         </div>
                     </div>
-                </div><div class="faq-item">
+                </div>
+                <div class="faq-item">
                     <button class="faq-question">
                         <span>カルステップについてもっと詳しく知りたいです。</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>以下のリンク先のyoutube動画で、カルステップについてより詳しく知ることができます。</p>
+                        <p>以下のリンク先のYouTube動画で、カルステップについてより詳しく知ることができます。</p>
                         <div class="faq-reference-links">
                             <ul>
                                 <li><a href="https://youtu.be/40IkbkaXB9o?si=mB4fGApS_wpua68T" target="_blank" rel="noopener noreferrer">・カルステップの使用方法（詳細）</a></li>
                                 <li><a href="https://youtu.be/9_5bIymDD3Q?si=CrN9UjUj1cHrchom" target="_blank" rel="noopener noreferrer">・システムプロンプトと補正辞書の設定方法</a></li>
                                 <li><a href="https://youtu.be/1KvAidC7mGs?si=jhw5fM25JTgekcKF" target="_blank" rel="noopener noreferrer">・Google Chrome拡張機能の設定方法</a></li>
-                            
                             </ul>
                         </div>
                     </div>
@@ -495,40 +712,44 @@
         </div>
     </section>
 
-   <!-- 10. クロージング（最終行動喚起） -->
-   <section id="closing" class="closing">
-    <div class="container">
-        <h2 class="section-title">理想の診察、<br class="mobile-only">今日から始めませんか？</h2>
-        <p class="closing-text">
-            カルステップは、<br class="mobile-only">あなたが医師として大切にしたい<br>「患者さんとの時間」を取り戻します。<br>
-            もう記録業務に悩む必要はありません。<br>今すぐ、理想の診察をはじめましょう。
-        </p>
-        <div class="closing-cta">
-            <a href="https://buy.stripe.com/8x228r36d6Gdeg9dTd7ok03" class="cta-button primary large" target="_blank" rel="noopener noreferrer">今すぐ購入</a>
-            <a href="https://mjs.main.jp/karustep-LP/contact.html" class="cta-button secondary large">お問い合わせ</a>
+    <!-- 10. クロージング（最終行動喚起） -->
+    <section id="closing" class="closing">
+        <div class="container">
+            <h2 class="section-title">備えあれば、<br class="mobile-only">患者さんも安心</h2>
+            <p class="closing-text">
+                カルステップは、<br class="mobile-only">電子カルテ障害時でも診療を継続し、<br>
+                患者さんの安心と、<br class="mobile-only">医療スタッフの負担軽減を実現します。<br>
+                いざという時のために、<br class="mobile-only">今すぐ備えましょう。
+            </p>
+            <div class="closing-cta">
+                <a href="https://buy.stripe.com/8wW6pJ7msczd6FD5kn" class="cta-button primary large" target="_blank" rel="noopener noreferrer" data-gtm="click_purchase_direct" data-position="closing">今すぐ購入</a>
+                <a href="https://mjs.main.jp/karustep-LP/contact.html" class="cta-button secondary large" target="_blank" rel="noopener noreferrer" data-gtm="click_cta_contact" data-position="closing">お問い合わせ</a>
+            </div>
+            <div class="contact-info">
+                <h4>お気軽にお問い合わせください</h4>
+                <p><i class="fas fa-globe"></i><a href="https://mjs.main.jp/corporate/" target="_blank" rel="noopener noreferrer">会社ホームページ</a></p>
+                <p><i class="fas fa-envelope"></i><a href="mailto:mjsc0mpa2@gmail.com">mjsc0mpa2@gmail.com</a></p>
+                <p><i class="fa-brands fa-square-x-twitter"></i><a href="https://twitter.com/Dr_kurukuru" target="_blank" rel="noopener noreferrer">@Dr_kurukuru</a></p>
+                <p><i class="fa-solid fa-headset"></i> サポート：チャット・Web面談<span class="desktop-only">対応</span></p>
+            </div>
+            <div class="legal-links">
+                <a href="https://mjs.main.jp/karustep-LP/privacy-policy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+                <span class="separator">｜</span>
+                <a href="https://mjs.main.jp/karustep-LP/tokutei-syotorihiki.html" target="_blank" rel="noopener noreferrer">特定商取引法に基づく表記</a>
+            </div>
         </div>
-        <div class="contact-info">
-            <h4>お気軽にお問い合わせください</h4>
-            <p><i class="fas fa-globe"></i><a href="https://mjs.main.jp/corporate/" target="_blank" rel="noopener noreferrer">会社ホームページ</a></p>
-            <p><i class="fas fa-envelope"></i><a href="mailto:mjsc0mpa2@gmail.com">mjsc0mpa2@gmail.com</a></p>
-            <p><i class="fa-brands fa-square-x-twitter"></i><a href="https://twitter.com/Dr_kurukuru" target="_blank" rel="noopener noreferrer">@Dr_kurukuru</a></p>
-            <p><i class="fa-solid fa-headset"></i> サポート：チャット・Web面談<span class="desktop-only">対応</span></p>
-        </div>
-        <div class="legal-links">
-            <a href="https://mjs.main.jp/karustep-LP/privacy-policy.html">プライバシーポリシー</a>
-            <span class="separator">｜</span>
-            <a href="https://mjs.main.jp/karustep-LP/tokutei-syotorihiki.html">特定商取引法に基づく表記</a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- スティッキーフッター（追従CTA） -->
     <div id="sticky-footer" class="sticky-footer">
-            <div class="sticky-footer-content">
-        <a href="https://buy.stripe.com/8x228r36d6Gdeg9dTd7ok03" class="cta-button primary large" target="_blank" rel="noopener noreferrer">今すぐ購入</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfA8Vr7X6dY7JiOIg42yjbFMJfaAB3nW_YEZV6onkJA-U0FJw/viewform?usp=dialog" class="cta-button secondary large" target="_blank" rel="noopener noreferrer">無料トライアル</a>
+        <div class="sticky-footer-content">
+            <a href="https://buy.stripe.com/8wW6pJ7msczd6FD5kn" class="cta-button primary" target="_blank" rel="noopener noreferrer" data-gtm="click_purchase_direct" data-position="sticky">今すぐ購入</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfA8Vr7X6dY7JiOIg42yjbFMJfaAB3nW_YEZV6onkJA-U0FJw/viewform?usp=dialog" class="cta-button secondary" target="_blank" rel="noopener noreferrer" data-gtm="click_cta_trial" data-position="sticky">無料トライアル</a>
+        </div>
     </div>
-    </div>
+
+    <!-- Twitter Widget Script -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <!-- GSAP CDN -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -536,5 +757,43 @@
     
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    
+    <script>
+        // X投稿の段階的読み込み機能
+        let currentBatch = 1;
+        const maxBatch = 3;
+        
+        function loadMorePosts() {
+            if (currentBatch >= maxBatch) {
+                document.getElementById('load-more-btn').disabled = true;
+                document.getElementById('load-more-btn').textContent = 'すべて表示されました';
+                return;
+            }
+            
+            currentBatch++;
+            const nextBatchCards = document.querySelectorAll(`[data-batch="${currentBatch}"]`);
+            
+            nextBatchCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.remove('hidden');
+                    
+                    // GSAPアニメーション
+                    gsap.from(card, {
+                        duration: 0.6,
+                        y: 30,
+                        opacity: 0,
+                        ease: 'power3.out'
+                    });
+                }, index * 150);
+            });
+            
+            if (currentBatch >= maxBatch) {
+                setTimeout(() => {
+                    document.getElementById('load-more-btn').disabled = true;
+                    document.getElementById('load-more-btn').textContent = 'すべて表示されました';
+                }, nextBatchCards.length * 150 + 300);
+            }
+        }
+    </script>
 </body>
 </html>

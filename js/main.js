@@ -128,6 +128,69 @@ function initializeScrollAnimations() {
         });
     });
 
+    // ユーザーの声(ライト版)カードのアニメーション
+    gsap.utils.toArray('.voice-light-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            delay: index * 0.2,
+            ease: 'power3.out'
+        });
+    });
+
+    // なぜ今セクションのアイテムアニメーション
+    gsap.utils.toArray('.why-now-item').forEach((item, index) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            delay: index * 0.2,
+            ease: 'power3.out'
+        });
+    });
+
+    // 3ステップ前提ボックスのアニメーション
+    if (document.querySelector('.step-premise')) {
+        gsap.from('.step-premise', {
+            scrollTrigger: {
+                trigger: '.step-premise',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 1,
+            scale: 0.9,
+            opacity: 0,
+            ease: 'back.out(1.3)'
+        });
+    }
+
+    // X投稿カードのアニメーション
+    gsap.utils.toArray('.x-post-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            delay: index * 0.15,
+            ease: 'power3.out'
+        });
+    });
+
     // 解決策セクションの矢印アニメーション
     gsap.from('.solution .arrow img', {
         scrollTrigger: {
